@@ -115,8 +115,12 @@ export async function pluginList(args: any[], ctx: CommandContext) {
     const channelID: string = ctx.channel.id;
 
     const pluginList = baseListHeader('Plugin', Object.keys(plugins).length);
-
-    for (const plugin of Object.values(plugins)) {
+    const compare = function(a,b){
+        if(a.manifest.name<b.manifest.name) return -1;
+        else if (a.manifest.name>b.manifest.name) return 1;
+        else return 0;
+    }
+    for (const plugin of Object.values(plugins).sort(compare)) {
         const { enabled, manifest, id } = plugin;
         const { name, description, authors } = manifest;
 
