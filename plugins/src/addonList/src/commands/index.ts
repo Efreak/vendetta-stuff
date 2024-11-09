@@ -122,12 +122,7 @@ export async function pluginList(args: any[], ctx: CommandContext) {
 
         if (detailed || alwaysDetailed)
             pluginList.push(
-                `> **Name**: ${name}`,
-                `> **Status**: ${enabled ? STATUS.ENABLED : STATUS.DISABLED}`,
-                `> **Description**: ${description}`,
-                `> **Authors**: ${addonAuthors(authors)}`,
-                `> **[Install!](${id})**`,
-                EMPTY
+                `- ${enabled ? STATUS.ENABLED : STATUS.DISABLED} [${name}](${id}): ${description.split('\n')[0]}`,
             );
         else
             pluginList.push(`> ${enabled ? STATUS.ENABLED : STATUS.DISABLED} **${name}** by ${addonAuthors(authors)}`);
